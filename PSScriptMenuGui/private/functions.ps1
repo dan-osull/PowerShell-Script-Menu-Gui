@@ -77,13 +77,16 @@ Function New-GuiForm {
         $form = [Windows.Markup.XamlReader]::Load($reader)
     }
     catch {
-        Write-Warning "Unable to parse XML, with error: $($Error[0])`n Ensure that there are NO SelectionChanged or TextChanged properties in your textboxes (PowerShell cannot process them)"
+        Write-Warning "Unable to parse XML!
+Ensure that there are NO SelectionChanged or TextChanged properties in your textboxes (PowerShell cannot process them).
+Note that this module does not currently work with PowerShell 7-preview and the VS Code integrated console."
         throw
     }
 
     #region Load XAML objects in PowerShell
     $xaml.SelectNodes("//*[@Name]") | ForEach-Object {
         try {
+            # TODO: could put these in a hashtable instead
             Set-Variable -Name "WPF_$($_.Name)" -Value $Form.FindName($_.Name) -ErrorAction Stop -Scope script
         }
         catch {
