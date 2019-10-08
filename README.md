@@ -5,17 +5,20 @@ Do you have favourite scripts that go forgotten?
 
 Does your organisation have scripts that would be useful to frontline staff who are not comfortable with the command line?
 
-This module uses an easy to customise CSV file to make a fast launching graphical menu of PowerShell scripts.
+This module uses an CSV file to make a graphical menu of PowerShell scripts.
 
-You can also add other Windows programs and files.
+It's easy to customise and it launches fast.
+
+You can also add Windows programs and files to the menu.
 
 Just a few minutes to setup and - *click! click!* - you're away!
 
 This an early version. What do you think? What's missing?
+
 Feedback very welcome.
 
 [@dan_osull.com](https://twitter.com/dan_osull_com/)  
-https://blog.osull.com  
+https://blog.osull.com
 
 Compatibility
 --
@@ -42,7 +45,7 @@ CSV column reference
 
 | |Section	| Method | Command | Name | Description
 ---|---|---|---|---|---
-**What is it?** | Text for heading *(optional)* | What happens when you click the button. Valid options: `cmd` \| `powershell_file` \| `powershell_inline` \| `pwsh_file` \| `pwsh_inline` | Path to target script or executable | Text for button | Text for description *(optional)*
+**What is it?** | Text for heading *(optional)* | What happens when you click the button? Valid options: `cmd` \| `powershell_file` \| `powershell_inline` \| `pwsh_file` \| `pwsh_inline` | Path to target script or executable | Text for button | Text for description *(optional)*
 **Example** | Old school | `cmd` | `example_target.cmd` | Example 1: cmd | .cmd file
 **Example** | Old school | `cmd` | `taskmgr.exe` | Example 2: cmd | External executable
 **Example** | Less old | `powershell_file` | `example_target.ps1` | Example 3: powershell_file | .ps1 file called with powershell.exe
