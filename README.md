@@ -56,7 +56,7 @@ Notes:
 - `<LineBreak />` is supported in text fields.
 - Excel makes a good editor!
 
-See [example_data.csv](examples\example_data.csv) for more.
+See [example_data.csv](examples/example_data.csv) for more.
 
 Known issues
 --
