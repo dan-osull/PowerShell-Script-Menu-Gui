@@ -5,7 +5,7 @@ Do you have favourite scripts that go forgotten?
 
 Does your organisation have scripts that would be useful to frontline staff who are not comfortable with the command line?
 
-This module uses an CSV file to make a graphical menu of PowerShell scripts.
+This module uses a CSV file to make a graphical menu of PowerShell scripts.
 
 It's easy to customise and it launches fast.
 
