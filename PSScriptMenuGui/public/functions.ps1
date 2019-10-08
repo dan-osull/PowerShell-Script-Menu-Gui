@@ -42,24 +42,21 @@ Function Show-ScriptMenuGui {
     # Row counter
     $script:row = 0
     # Add CSV data to XAML
-    $sections = $csvData | Group-Object -Property Section
-    # TODO: section order is not preserved in PS7
-    if ($sections.Name) {
-        # Section column is present
-        ForEach ($section in $sections) {
-            $xaml += New-GuiHeading $section.Values
-            ForEach ($item in $section.Group) {
-                # TODO: error if individual item is missing Section
-                $xaml += New-GuiRow $item
-            }
+    # Not using Group-Object as PS7-preview4 does not preserve original order
+    $sections = $csvData.Section | Where-Object {-not [string]::IsNullOrEmpty($_)} | Get-Unique
+    # First loop through Sections
+    ForEach ($section in $sections) {
+        # Section Heading
+        $xaml += New-GuiHeading $section
+        $csvData | Where-Object {$_.Section -eq $section} | ForEach-Object {
+            # Add items
+            $xaml += New-GuiRow $_
         }
     }
-    else {
-        # Section column is not present
-        # TODO: tidy up spacing at top (minor)
-        ForEach ($item in $csvData) {
-            $xaml += New-GuiRow $item
-        }
+    # Then process items with blank Section
+    $csvData | Where-Object {[string]::IsNullOrEmpty($_.Section)} | ForEach-Object {
+        $xaml += New-GuiRow $_
+        # TODO: spacing at top of window is untidy with no Sections (minor)
     }
 
     # Finish constructing XAML
