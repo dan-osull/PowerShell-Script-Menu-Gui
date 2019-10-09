@@ -18,7 +18,8 @@ This an early version. What do you think? What's missing?
 Feedback very welcome.
 
 [@dan_osull.com](https://twitter.com/dan_osull_com/)  
-https://blog.osull.com
+https://blog.osull.com  
+powershell@osull.com
 
 Compatibility
 --
@@ -38,7 +39,7 @@ Basic usage
 
     Show-ScriptMenuGui -csvPath '.\example_data.csv'
 
-See [`PSScriptMenuGui_all_options.ps1`](examples\PSScriptMenuGui_all_options.ps1) for an example with all options.
+See [`PSScriptMenuGui_all_options.ps1`](examples/PSScriptMenuGui_all_options.ps1) for an example with all options.
 
 CSV column reference
 --
