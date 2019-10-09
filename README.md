@@ -18,7 +18,8 @@ This an early version. What do you think? What's missing?
 Feedback very welcome.
 
 [@dan_osull.com](https://twitter.com/dan_osull_com/)  
-https://blog.osull.com
+https://blog.osull.com  
+powershell@osull.com
 
 Compatibility
 --
@@ -31,6 +32,10 @@ Try it out
     cd PowerShell-Script-Menu-Gui/examples
     .\PSScriptMenuGui.ps1
 
+Or - if you don't have Git - [download the project ZIP](https://github.com/weebsnore/PowerShell-Script-Menu-Gui/archive/master.zip), unzip somewhere convenient, and experiment with editing [`examples\example_data.csv`](examples/example_data.csv) and running [`examples\PSScriptMenuGui.ps1`](examples/PSScriptMenuGui.ps1)
+
+When the module is a bit more mature I'll put it in the PowerShell Gallery so it can be installed with `Install-Module`
+
 ![](demo.gif)
 
 Basic usage
@@ -38,7 +43,7 @@ Basic usage
 
     Show-ScriptMenuGui -csvPath '.\example_data.csv'
 
-See [`PSScriptMenuGui_all_options.ps1`](examples\PSScriptMenuGui_all_options.ps1) for an example with all options.
+See [`PSScriptMenuGui_all_options.ps1`](examples/PSScriptMenuGui_all_options.ps1) for an example with all options.
 
 CSV column reference
 --
@@ -56,7 +61,9 @@ Notes:
 - `<LineBreak />` is supported in text fields.
 - Excel makes a good editor!
 
-See [example_data.csv](examples/example_data.csv) for more.
+See [`example_data.csv`](examples/example_data.csv) for a complete example.
+
+![](excel.png)
 
 Known issues
 --
