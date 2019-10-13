@@ -67,7 +67,7 @@ Less old | `powershell_inline` | `$PSVersionTable` | `-NoExit -WindowStyle Maxim
 The future | `pwsh_file` | `example_target.ps1` | | Example 7: pwsh_file | .ps1 file called with pwsh.exe
 The future | `pwsh_inline` | `& .\example_target.ps1 -Message "passed in via param"` | |Example 9: pwsh_inline | .ps1 file called with parameter
 
-See [example_data.csv](examples/example_data.csv) for further examples.
+See [`example_data.csv`](examples/example_data.csv) for further examples.
 
 ### Tips
 
