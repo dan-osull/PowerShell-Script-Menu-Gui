@@ -113,7 +113,12 @@ Function Invoke-ButtonAction {
 
     # Pipe match to Start-Script function
     # Lets us check CSV data via parameter validation
-    $csvMatch | Start-Script -ErrorAction Stop
+    try {
+        $csvMatch | Start-Script -ErrorAction Stop
+    }
+    catch {
+        Write-Error $_
+    }
 }
 
 Function Start-Script {
