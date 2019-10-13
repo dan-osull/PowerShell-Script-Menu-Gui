@@ -7,7 +7,7 @@ Does your organisation have scripts that would be useful to frontline staff who 
 
 This module uses a CSV file to make a graphical menu of PowerShell scripts.
 
-It's easy to customise and it launches fast.
+It's easy to customise and fast to launch.
 
 You can also add Windows programs and files to the menu.
 

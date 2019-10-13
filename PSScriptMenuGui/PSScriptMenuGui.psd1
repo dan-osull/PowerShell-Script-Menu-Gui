@@ -9,7 +9,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
- RootModule = 'PSScriptMenuGui.psm1'
+RootModule = 'PSScriptMenuGui.psm1'
 
 # Version number of this module.
 ModuleVersion = '0.1.0'
@@ -27,13 +27,13 @@ Author = "Dan O'Sullivan"
 # CompanyName = ''
 
 # Copyright statement for this module
-Copyright = "(c) Dan O'Sullivan. All rights reserved."
+Copyright = "(c) Dan O'Sullivan. Released under the MIT License."
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'Use a CSV file to make a graphical menu of PowerShell scripts. Easy to customise and fast to launch.'
 
 # Minimum version of the PowerShell engine required by this module
-# PowerShellVersion = ''
+PowerShellVersion = '5.1'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
@@ -100,10 +100,10 @@ PrivateData = @{
         # Tags = @()
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'https://github.com/weebsnore/PowerShell-Script-Menu-Gui/blob/master/LICENSE'
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/weebsnore/PowerShell-Script-Menu-Gui'
 
         # A URL to an icon representing this module.
         # IconUri = ''

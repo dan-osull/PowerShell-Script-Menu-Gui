@@ -51,11 +51,11 @@ Function Show-ScriptMenuGui {
     $script:row = 0
     # Add CSV data to XAML
     # Not using Group-Object as PS7-preview4 does not preserve original order
-    $sections = $csvData.Section | Where-Object {-not [string]::IsNullOrEmpty($_)} | Get-Unique
+    $sections = $csvData.Section | Where-Object {-not [string]::IsNullOrEmpty($_) } | Get-Unique
 
     # Generate GUI rows
     ForEach ($section in $sections) {
-        Write-Verbose "Adding GUI Section: $section  ..."
+        Write-Verbose "Adding GUI Section: $section..."
         # Section Heading
         $xaml += New-GuiHeading $section
         $csvData | Where-Object {$_.Section -eq $section} | ForEach-Object {
@@ -64,7 +64,7 @@ Function Show-ScriptMenuGui {
         }
     }
     Write-Verbose 'Adding any items with blank Section...'
-    $csvData | Where-Object {[string]::IsNullOrEmpty($_.Section)} | ForEach-Object {
+    $csvData | Where-Object { [string]::IsNullOrEmpty($_.Section) } | ForEach-Object {
         $xaml += New-GuiRow $_
         # TODO: spacing at top of window is untidy with no Sections (minor)
     }
