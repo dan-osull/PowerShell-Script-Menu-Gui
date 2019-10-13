@@ -17,8 +17,7 @@ Function Show-ScriptMenuGui {
             $verbose = $true
         }
     }
-    catch {
-    }
+    catch {}
 
     if ($hideConsole) {
         # TODO: This will also hide errors. Should be done later?
@@ -27,7 +26,7 @@ Function Show-ScriptMenuGui {
 
     $csvData = Import-CSV $csvPath
     Write-Verbose "Got $($csvData.Count) CSV rows"
-    # TODO: validate CSV input
+    # TODO: validate CSV input?
 
     # Add unique Reference to each item
     # Used as x:Name of button and to look up action on click
@@ -78,11 +77,10 @@ Function Show-ScriptMenuGui {
     Write-Verbose 'Creating XAML objects...'
     $form = New-GuiForm -inputXml $xaml
 
-    $buttonVariables = Get-Variable WPF_button*
-    Write-Verbose "Found $($buttonVariables.Count) buttons"
+    Write-Verbose "Found $($buttons.Count) buttons"
     Write-Verbose 'Adding click actions...'
-    ForEach ($buttonVariable in $buttonVariables) {
-        $buttonVariable.Value.Add_Click( {
+    ForEach ($button in $buttons) {
+        $button.Add_Click( {
             # Use object in pipeline to identify script to run
             Start-Script $_.Source.Name
         } )

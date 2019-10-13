@@ -87,11 +87,11 @@ Note that this module does not currently work with PowerShell 7-preview and the 
         throw
     }
 
-    #region Load XAML objects in PowerShell
+    # Load XAML button objects in PowerShell
+    $script:buttons = @()
     $xaml.SelectNodes("//*[@Name]") | ForEach-Object {
         try {
-            # TODO: could put these in a hashtable instead
-            Set-Variable -Name "WPF_$($_.Name)" -Value $Form.FindName($_.Name) -ErrorAction Stop -Scope script
+            $script:buttons += $Form.FindName($_.Name)
         }
         catch {
             throw
