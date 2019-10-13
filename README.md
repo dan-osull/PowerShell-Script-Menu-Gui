@@ -43,21 +43,27 @@ See [`PSScriptMenuGui_all_options.ps1`](examples/PSScriptMenuGui_all_options.ps1
 
 CSV column reference
 --
+...and selected examples
 
-| |Section	| Method | Command | Name | Description
----|---|---|---|---|---
-**What is it?** | Text for heading *(optional)* | What happens when you click the button? Valid options: `cmd` \| `powershell_file` \| `powershell_inline` \| `pwsh_file` \| `pwsh_inline` | Path to target script or executable | Text for button | Text for description *(optional)*
-**Example** | Old school | `cmd` | `example_target.cmd` | Example 1: cmd | .cmd file
-**Example** | Old school | `cmd` | `taskmgr.exe` | Example 2: cmd | External executable
-**Example** | Less old | `powershell_file` | `example_target.ps1` | Example 3: powershell_file | .ps1 file called with powershell.exe
-**Example** | The future | `pwsh_file` | `example_target.ps1` | Example 5: pwsh_file | .ps1 file called with pwsh.exe
+| |Section	| Method | Command | Arguments | Name | Description
+---|---|---|---|---|---|---
+**What is it?** | Text for heading *(optional)* | What happens when you click the button? Valid options: `cmd` \| `powershell_file` \| `powershell_inline` \| `pwsh_file` \| `pwsh_inline` | Path to target script/executable (`cmd` or `_file` methods) ***or*** PowerShell commands (`_inline` methods) | Arguments to pass to target executable (`cmd` method) ***or*** to the PowerShell exe *(optional)* | Text for button | Text for description *(optional)*
+**Example** | Old school | `cmd` | `example_target.cmd` | | Example 1: cmd | .cmd file
+**Example** | Old school | `cmd` | `taskmgr.exe` | | Example 2: cmd | External executable
+**Example** | Old school | `cmd` | `notepad.exe` | `hello` | Example 3: cmd | External executable with arguments
+**Example** | Less old | `powershell_file` | `example_target.ps1` | | Example 4: powershell_file | .ps1 file called with powershell.exe
+**Example** | Less old | `powershell_inline` | `$PSVersionTable` | `-NoExit -WindowStyle Maximized` | Example 6: powershell_file | Additional powershell.exe arguments
+**Example** | The future | `pwsh_file` | `example_target.ps1` | | Example 7: pwsh_file | .ps1 file called with pwsh.exe
+**Example** | The future | `pwsh_inline` | `& .\example_target.ps1 -Message "passed in via param"` | |Example 9: pwsh_inline | .ps1 file called with parameter
 
-Notes:
-- Relative paths and paths in your environment should work.
+Tips:
+- Relative paths, network paths and paths in your environment should work.
 - `<LineBreak />` is supported in text fields.
+- You can add multiple `_inline` commands by separating with a semi-colon (`;`).
 - Excel makes a good editor!
+- But watch out for Excel turning e.g. `-NoExit` into a formula. Best workaround is to prefix with a space.
 
-See [example_data.csv](examples/example_data.csv) for a complete example.
+See [example_data.csv](examples/example_data.csv) for further examples.
 
 ![](excel.png)
 

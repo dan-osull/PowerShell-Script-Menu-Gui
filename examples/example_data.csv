@@ -4,7 +4,7 @@ Old school,cmd,taskmgr.exe,,Example 2:<LineBreak />cmd,External executable
 Old school,cmd,notepad.exe,hello,Example 3:<LineBreak />cmd,External executable with arguments
 Less old,powershell_file,.\example_target.ps1,,Example 4:<LineBreak />powershell_file,.ps1 file called with powershell.exe
 Less old,powershell_inline,"""Inline script"";$PSVersionTable;Read-Host ""Press Enter to continue""",,Example 5:<LineBreak />powershell_inline,Inline script called with powershell.exe
-Less old,powershell_inline,"""Inline script"";$PSVersionTable;Read-Host ""Press Enter to continue""", -NoExit -WindowStyle Maximized,Example 6:<LineBreak />powershell_inline,Additional powershell.exe arguments
+Less old,powershell_inline,$PSVersionTable, -NoExit -WindowStyle Maximized,Example 6:<LineBreak />powershell_inline,Additional powershell.exe arguments
 The future,pwsh_file,.\example_target.ps1,,Example 7:<LineBreak />pwsh_file,.ps1 file called with pwsh.exe
 The future,pwsh_inline,"""Inline script"";$PSVersionTable;Read-Host ""Press Enter to continue""",,Example 8:<LineBreak />pwsh_inline,Inline script called with pwsh.exe
-The future,pwsh_inline,"& .\example_target.ps1 -Message ""message passed in via param""",,Example 9:<LineBreak />pwsh_inline,.ps1 file called with parameter
+The future,pwsh_inline,"& .\example_target.ps1 -Message ""passed in via param""",,Example 9:<LineBreak />pwsh_inline,.ps1 file called with parameter
