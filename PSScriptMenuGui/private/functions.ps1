@@ -104,26 +104,48 @@ Function Start-Script {
     # Get relevant CSV row
     $csvMatch = $csvData | Where-Object {$_.Reference -eq $buttonName}
 
-    # TODO: check that target file exist?
-
-    # Begin constructing arguments
-    $arguments = '-ExecutionPolicy Bypass '
-    if ($noExit) {
-        # TODO: could be a per-script setting
-        $arguments += '-NoExit -NoLogo '
-    }
+    # Get Command
     $command = $csvMatch.Command
     $encodedCommand = [Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($command))
 
+    # TODO: check that target file exist?
+
+    # Handle cmd first
+    if ($csvMatch.Method -eq 'cmd') {
+        if ($csvMatch.Arguments) {
+            # Using .NET, as Start-Process adds a trailing space to arguments
+            # https://social.technet.microsoft.com/Forums/en-US/97be1de5-f31e-416e-9752-ed60c39c0383/powershell-40-startprocess-adds-extra-space-to-commandline
+            $process = New-Object System.Diagnostics.Process
+            $process.StartInfo.FileName = $command
+            $process.StartInfo.Arguments = $csvMatch.Arguments
+            $process.Start()
+        }
+        else {
+            Start-Process -FilePath $command
+        }
+    }
+
+    # Begin constructing PowerShell arguments
+    $arguments = @()
+    $arguments += '-ExecutionPolicy Bypass'
+    $arguments += '-NoLogo'
+    if ($noExit) {
+        # Global -NoExit switch
+        $arguments += '-NoExit'
+    }
+    if ($csvMatch.Arguments) {
+        # Additional arguments from CSV
+        $arguments += $csvMatch.Arguments
+    }
+
     switch ($csvMatch.Method) {
-        # TODO: section could be more compact
-        # TODO: arguments do not currently work
+        # Some code repetition but readable
         powershell_file {
             $arguments += "-File `"$command`""
             Start-Process -FilePath "powershell.exe" -ArgumentList $arguments
         }
         powershell_inline {
-            $arguments = "-EncodedCommand `"$encodedCommand`""
+            $arguments += "-EncodedCommand `"$encodedCommand`""
             Start-Process -FilePath "powershell.exe" -ArgumentList $arguments
         }
         pwsh_file {
@@ -131,11 +153,8 @@ Function Start-Script {
             Start-Process -FilePath "pwsh.exe" -ArgumentList $arguments
         }
         pwsh_inline {
-            $arguments = "-EncodedCommand `"$encodedCommand`""
+            $arguments += "-EncodedCommand `"$encodedCommand`""
             Start-Process -FilePath "pwsh.exe" -ArgumentList $arguments
-        }
-        cmd {
-            Start-Process -FilePath $command
         }
     }
 }

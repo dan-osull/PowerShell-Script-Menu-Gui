@@ -27,8 +27,7 @@ Function Show-ScriptMenuGui {
     }
 
     # Begin constructing XAML
-    $xaml = @()
-    $xaml += Get-Content "$moduleRoot\xaml\start.xaml"
+    $xaml = Get-Content "$moduleRoot\xaml\start.xaml"
     $xaml = $xaml.Replace('INSERT_WINDOW_TITLE',$windowTitle)
     if ($iconPath) {
         # TODO: change taskbar icon?
