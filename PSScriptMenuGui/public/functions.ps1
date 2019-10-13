@@ -10,12 +10,23 @@ Function Show-ScriptMenuGui {
         [switch]$noExit
     )
 
+    # Record -Verbose value, to pass to select cmdlets
+    $verbose = $false
+    try {
+        if ($PSBoundParameters['Verbose'].ToString() -eq 'True') {
+            $verbose = $true
+        }
+    }
+    catch {
+    }
+
     if ($hideConsole) {
         # TODO: This will also hide errors. Should be done later?
         Hide-Console | Out-Null
     }
 
     $csvData = Import-CSV $csvPath
+    Write-Verbose "Got $($csvData.Count) CSV rows"
     # TODO: validate CSV input
 
     # Add unique Reference to each item
@@ -43,8 +54,10 @@ Function Show-ScriptMenuGui {
     # Add CSV data to XAML
     # Not using Group-Object as PS7-preview4 does not preserve original order
     $sections = $csvData.Section | Where-Object {-not [string]::IsNullOrEmpty($_)} | Get-Unique
-    # First loop through Sections
+
+    # Generate GUI rows
     ForEach ($section in $sections) {
+        Write-Verbose "Processing Section: $section ..."
         # Section Heading
         $xaml += New-GuiHeading $section
         $csvData | Where-Object {$_.Section -eq $section} | ForEach-Object {
@@ -52,26 +65,29 @@ Function Show-ScriptMenuGui {
             $xaml += New-GuiRow $_
         }
     }
-    # Then process items with blank Section
+    Write-Verbose 'Processing any items with blank Section...'
     $csvData | Where-Object {[string]::IsNullOrEmpty($_.Section)} | ForEach-Object {
         $xaml += New-GuiRow $_
         # TODO: spacing at top of window is untidy with no Sections (minor)
     }
+    Write-Verbose "Added $($row) GUI rows"
 
     # Finish constructing XAML
     $xaml += Get-Content "$moduleRoot\xaml\end.xaml"
 
-    # Generate form
+    Write-Verbose 'Creating XAML objects...'
     $form = New-GuiForm -inputXml $xaml
 
-    # Add clicks to buttons
-    ForEach ($buttonVariable in Get-Variable WPF_button*) {
+    $buttonVariables = Get-Variable WPF_button*
+    Write-Verbose "Found $($buttonVariables.Count) buttons"
+    Write-Verbose 'Adding click actions...'
+    ForEach ($buttonVariable in $buttonVariables) {
         $buttonVariable.Value.Add_Click( {
             # Use object in pipeline to identify script to run
             Start-Script $_.Source.Name
         } )
     }
 
-    # Show form
+    Write-Verbose 'Showing dialog...'
     $Form.ShowDialog() | Out-Null
 }

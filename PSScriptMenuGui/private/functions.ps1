@@ -25,9 +25,12 @@ Function New-GuiHeading {
 }
 
 Function New-GuiRow {
+    [CmdletBinding()]
     param(
         [Parameter(Mandatory)][PSCustomObject]$item
     )
+    Write-Verbose $item
+
     $string = Get-Content "$moduleRoot\xaml\item.xaml"
     $string = $string.Replace('INSERT_BACKGROUND_COLOR',$buttonBackgroundColor)
     $string = $string.Replace('INSERT_FOREGROUND_COLOR',$buttonForegroundColor)
@@ -56,6 +59,7 @@ Function Get-XamlSafeString {
     $string = $string.Replace('&','&amp;').Replace('<','&lt;').Replace('>','&gt;').Replace('"','&quot;')
     # Preserves line breaks. A bit hacky. Bad idea?
     # https://stackoverflow.com/questions/183406/newline-in-string-attribute
+    # TODO: <Paragraph> support?
     $string = $string.Replace('&lt;LineBreak /&gt;','<LineBreak />')
 
     return $string
@@ -98,11 +102,15 @@ Note that this module does not currently work with PowerShell 7-preview and the 
 }
 
 Function Start-Script {
+    [CmdletBinding()]
     param(
         [Parameter(Mandatory)][string]$buttonName
     )
+    Write-Verbose "$buttonName clicked"
     # Get relevant CSV row
     $csvMatch = $csvData | Where-Object {$_.Reference -eq $buttonName}
+    Write-Verbose $csvMatch
+    # TODO: pass $csvMatch to second Function and validate parameters?
 
     # Get Command
     $command = $csvMatch.Command
@@ -121,8 +129,9 @@ Function Start-Script {
             $process.Start()
         }
         else {
-            Start-Process -FilePath $command
+            Start-Process -FilePath $command -Verbose:$verbose
         }
+        return
     }
 
     # Begin constructing PowerShell arguments
@@ -138,23 +147,26 @@ Function Start-Script {
         $arguments += $csvMatch.Arguments
     }
 
-    switch ($csvMatch.Method) {
-        # Some code repetition but readable
-        powershell_file {
-            $arguments += "-File `"$command`""
-            Start-Process -FilePath "powershell.exe" -ArgumentList $arguments
+    # Set Start-Process params according to CSV method
+    $method = $csvMatch.Method.Split('_')
+    switch ($method[0]) {
+        powershell {
+            $filePath = 'powershell.exe'
         }
-        powershell_inline {
-            $arguments += "-EncodedCommand `"$encodedCommand`""
-            Start-Process -FilePath "powershell.exe" -ArgumentList $arguments
-        }
-        pwsh_file {
-            $arguments += "-File `"$command`""
-            Start-Process -FilePath "pwsh.exe" -ArgumentList $arguments
-        }
-        pwsh_inline {
-            $arguments += "-EncodedCommand `"$encodedCommand`""
-            Start-Process -FilePath "pwsh.exe" -ArgumentList $arguments
+        pwsh {
+            $filePath = 'pwsh.exe'
         }
     }
+    switch ($method[1]) {
+        file {
+            $arguments += "-File `"$command`""
+        }
+        inline {
+            $arguments += "-EncodedCommand `"$encodedCommand`""
+        }
+    }
+
+    # Launch process
+    $arguments | ForEach-Object {Write-Verbose $_}
+    Start-Process -FilePath $filePath -ArgumentList $arguments -Verbose:$verbose
 }

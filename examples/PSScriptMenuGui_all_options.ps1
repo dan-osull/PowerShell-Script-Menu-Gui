@@ -9,5 +9,6 @@ $params = @{
     iconPath = '.\pwsh7.ico'
     hideConsole = $true
     noExit = $true
+    Verbose = $true
 }
 Show-ScriptMenuGui @params
