@@ -32,6 +32,10 @@ Try it out
     cd PowerShell-Script-Menu-Gui/examples
     .\PSScriptMenuGui.ps1
 
+Or - if you don't have Git - [download the project ZIP](https://github.com/weebsnore/PowerShell-Script-Menu-Gui/archive/master.zip), unzip somewhere convenient, and experiment with editing [`examples\example_data.csv`](examples/example_data.csv) and running [`examples\PSScriptMenuGui.ps1`](examples/PSScriptMenuGui.ps1)
+
+When the module is a bit more mature I'll put it in the PowerShell Gallery so it can be installed with `Install-Module`
+
 ![](demo.gif)
 
 Basic usage
