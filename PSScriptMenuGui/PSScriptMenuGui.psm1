@@ -17,3 +17,5 @@ ForEach ($script in $scripts) {
 
 # Used to load files from xaml subfolder
 $moduleRoot = $PSScriptRoot
+
+# TODO: give error if loaded with PS6
