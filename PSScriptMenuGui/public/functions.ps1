@@ -26,7 +26,6 @@ Function Show-ScriptMenuGui {
 
     $csvData = Import-CSV $csvPath
     Write-Verbose "Got $($csvData.Count) CSV rows"
-    # TODO: validate CSV input?
 
     # Add unique Reference to each item
     # Used as x:Name of button and to look up action on click
@@ -56,7 +55,7 @@ Function Show-ScriptMenuGui {
 
     # Generate GUI rows
     ForEach ($section in $sections) {
-        Write-Verbose "Processing Section: $section ..."
+        Write-Verbose "Adding GUI Section: $section  ..."
         # Section Heading
         $xaml += New-GuiHeading $section
         $csvData | Where-Object {$_.Section -eq $section} | ForEach-Object {
@@ -64,7 +63,7 @@ Function Show-ScriptMenuGui {
             $xaml += New-GuiRow $_
         }
     }
-    Write-Verbose 'Processing any items with blank Section...'
+    Write-Verbose 'Adding any items with blank Section...'
     $csvData | Where-Object {[string]::IsNullOrEmpty($_.Section)} | ForEach-Object {
         $xaml += New-GuiRow $_
         # TODO: spacing at top of window is untidy with no Sections (minor)
@@ -82,7 +81,7 @@ Function Show-ScriptMenuGui {
     ForEach ($button in $buttons) {
         $button.Add_Click( {
             # Use object in pipeline to identify script to run
-            Start-Script $_.Source.Name
+            Invoke-ButtonAction $_.Source.Name
         } )
     }
 

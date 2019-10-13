@@ -1,6 +1,6 @@
 function Hide-Console {
+    # .NET method for hiding the PowerShell console window
     # https://stackoverflow.com/questions/40617800/opening-powershell-script-and-hide-command-prompt-but-not-the-gui
-    # .NET methods for hiding/showing the console in the background
     Add-Type -Name Window -Namespace Console -MemberDefinition '
     [DllImport("Kernel32.dll")]
     public static extern IntPtr GetConsoleWindow();
@@ -101,31 +101,41 @@ Note that this module does not currently work with PowerShell 7-preview and the 
     return $form
 }
 
-Function Start-Script {
-    [CmdletBinding()]
+Function Invoke-ButtonAction {
     param(
         [Parameter(Mandatory)][string]$buttonName
     )
     Write-Verbose "$buttonName clicked"
+
     # Get relevant CSV row
     $csvMatch = $csvData | Where-Object {$_.Reference -eq $buttonName}
     Write-Verbose $csvMatch
-    # TODO: pass $csvMatch to second Function and validate parameters?
 
-    # Get Command
-    $command = $csvMatch.Command
-    $encodedCommand = [Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($command))
+    # Pipe match to Start-Script function
+    # Lets us check CSV data via parameter validation
+    $csvMatch | Start-Script -ErrorAction Stop
+}
 
-    # TODO: check that target file exist?
+Function Start-Script {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
+        [ValidateSet('cmd','powershell_file','powershell_inline','pwsh_file','pwsh_inline')]
+        [string]$method,
+
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName)][string]$command,
+
+        [Parameter(ValueFromPipelineByPropertyName)][string]$arguments
+    )
 
     # Handle cmd first
-    if ($csvMatch.Method -eq 'cmd') {
-        if ($csvMatch.Arguments) {
-            # Using .NET, as Start-Process adds a trailing space to arguments
+    if ($method -eq 'cmd') {
+        if ($arguments) {
+            # Using .NET directly, as Start-Process adds a trailing space to arguments
             # https://social.technet.microsoft.com/Forums/en-US/97be1de5-f31e-416e-9752-ed60c39c0383/powershell-40-startprocess-adds-extra-space-to-commandline
             $process = New-Object System.Diagnostics.Process
             $process.StartInfo.FileName = $command
-            $process.StartInfo.Arguments = $csvMatch.Arguments
+            $process.StartInfo.Arguments = $arguments
             $process.Start()
         }
         else {
@@ -135,21 +145,22 @@ Function Start-Script {
     }
 
     # Begin constructing PowerShell arguments
-    $arguments = @()
-    $arguments += '-ExecutionPolicy Bypass'
-    $arguments += '-NoLogo'
+    $psArguments = @()
+    $psArguments += '-ExecutionPolicy Bypass'
+    $psArguments += '-NoLogo'
     if ($noExit) {
         # Global -NoExit switch
-        $arguments += '-NoExit'
+        $psArguments += '-NoExit'
     }
-    if ($csvMatch.Arguments) {
-        # Additional arguments from CSV
-        $arguments += $csvMatch.Arguments
+    if ($arguments) {
+        # Additional PS arguments from CSV
+        $psArguments += $arguments
     }
 
     # Set Start-Process params according to CSV method
-    $method = $csvMatch.Method.Split('_')
-    switch ($method[0]) {
+    $splitMethod = $method.Split('_')
+    $encodedCommand = [Convert]::ToBase64String( [System.Text.Encoding]::Unicode.GetBytes($command) )
+    switch ($splitMethod[0]) {
         powershell {
             $filePath = 'powershell.exe'
         }
@@ -157,16 +168,16 @@ Function Start-Script {
             $filePath = 'pwsh.exe'
         }
     }
-    switch ($method[1]) {
+    switch ($splitMethod[1]) {
         file {
-            $arguments += "-File `"$command`""
+            $psArguments += "-File `"$command`""
         }
         inline {
-            $arguments += "-EncodedCommand `"$encodedCommand`""
+            $psArguments += "-EncodedCommand `"$encodedCommand`""
         }
     }
 
     # Launch process
-    $arguments | ForEach-Object {Write-Verbose $_}
-    Start-Process -FilePath $filePath -ArgumentList $arguments -Verbose:$verbose
+    $psArguments | ForEach-Object { Write-Verbose $_ }
+    Start-Process -FilePath $filePath -ArgumentList $psArguments -Verbose:$verbose
 }
