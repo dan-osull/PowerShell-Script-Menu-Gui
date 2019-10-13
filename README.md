@@ -46,7 +46,7 @@ See [`PSScriptMenuGui_all_options.ps1`](examples/PSScriptMenuGui_all_options.ps1
 ## CSV reference
 
 Column header | What is it?
---- | ---
+:--- | :---
 Section *(optional)* | Text for heading
 Method | What happens when you click the button? Valid options: `cmd` \| `powershell_file` \| `powershell_inline` \| `pwsh_file` \| `pwsh_inline`
 Command | Path to target script/executable (`cmd` or `_file` methods) ***or*** PowerShell commands (`_inline` methods)
@@ -58,8 +58,7 @@ Description *(optional)* | Text for description
 ### Selected examples
 
 Section | Method | Command | Arguments | Name | Description
----|---|---|---|---|---
-Old school | `cmd` | `example_target.cmd` | | Example 1: cmd | .cmd file
+:---|:---|:---|:---|:---|:---
 Old school | `cmd` | `taskmgr.exe` | | Example 2: cmd | External executable
 Old school | `cmd` | `notepad.exe` | `hello` | Example 3: cmd | External executable with arguments
 Less old | `powershell_file` | `example_target.ps1` | | Example 4: powershell_file | .ps1 file called with powershell.exe
