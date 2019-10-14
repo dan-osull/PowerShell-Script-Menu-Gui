@@ -12,7 +12,7 @@
 RootModule = 'PSScriptMenuGui.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1.0'
+ModuleVersion = '0.2.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -70,7 +70,8 @@ PowerShellVersion = '5.1'
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = @(
-    'Show-ScriptMenuGui'
+    'Show-ScriptMenuGui',
+    'New-ScriptMenuGuiExample'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -97,7 +98,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags = @('PSEdition_Desktop','PSEdition_Core','Windows')
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/weebsnore/PowerShell-Script-Menu-Gui/blob/master/LICENSE'

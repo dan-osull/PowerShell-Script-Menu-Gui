@@ -1,4 +1,4 @@
-if ($PSVersionTable.PSVersion.Major -ge 6) {
+if ($PSEdition -eq 'Core') {
     if (-not $IsWindows) {
         throw 'This module only runs on Windows'
     }
