@@ -28,10 +28,10 @@ powershell@osull.com
 ## Try it out
 
     git clone https://github.com/weebsnore/PowerShell-Script-Menu-Gui
-    cd PowerShell-Script-Menu-Gui/examples
+    cd PowerShell-Script-Menu-Gui/PSScriptMenuGui/examples
     .\PSScriptMenuGui.ps1
 
-Or - if you don't have Git - [download the project ZIP](https://github.com/weebsnore/PowerShell-Script-Menu-Gui/archive/master.zip), unzip somewhere convenient, and experiment with editing [`examples\example_data.csv`](examples/example_data.csv) and running [`examples\PSScriptMenuGui.ps1`](examples/PSScriptMenuGui.ps1)
+Or - if you don't have Git - [download the project ZIP](https://github.com/weebsnore/PowerShell-Script-Menu-Gui/archive/master.zip), unzip somewhere convenient, and experiment with editing [`PSScriptMenuGui\examples\example_data.csv`](PSScriptMenuGui/examples/example_data.csv) and running [`PSScriptMenuGui\examples\PSScriptMenuGui.ps1`](PSScriptMenuGui/examples/PSScriptMenuGui.ps1)
 
 When the module is a bit more mature I'll put it in the PowerShell Gallery so it can be installed with `Install-Module`
 
@@ -39,14 +39,28 @@ When the module is a bit more mature I'll put it in the PowerShell Gallery so it
 
 ## Basic usage
 
-    Show-ScriptMenuGui -csvPath '.\example_data.csv'
+    Show-ScriptMenuGui -csvPath '.\example_data.csv' -Verbose
 
-See [`PSScriptMenuGui_all_options.ps1`](examples/PSScriptMenuGui_all_options.ps1) for an example with all options.
+## `Show-ScriptMenuGui` options
+
+Parameter | What is it?
+:--- |:---|:---|:---
+`-csvPath` | Path to CSV file that defines the menu. See [CSV reference](#CSV-reference), below.
+`-windowTitle` *(optional)* | Custom title for the menu window
+`-buttonForegroundColor` *(optional)* | Custom button foreground (text) color. Hex codes (e.g. `#C00077`) and color names (e.g. `Azure`) are valid. See [.Net Color Class](https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors)
+`-buttonBackgroundColor` *(optional)* | Custom button background color
+`-iconPath` *(optional)* | Path to .ico file for use in menu
+`-hideConsole` *(optional)* | Hide the PowerShell console that the menu is called from. **Note:** This means you won't be able to see any errors from button clicks. If things aren't working, this should be the first thing you disable.
+`-noExit` *(optional)* | Start all PowerShell instances with `-NoExit` *("Does not exit after running startup commands.")*. **Note:** You can set `-NoExit` on individual menu items by using the Arguments column. See [CSV reference](#CSV-reference), below.
+
+See [`PSScriptMenuGui_all_options.ps1`](PSScriptMenuGui/examples/PSScriptMenuGui_all_options.ps1) for an example using every option.
 
 ## CSV reference
 
+This table details how you need to lay out the CSV file for your menu:
+
 Column header | What is it?
-:--- | :---
+:--- |:---
 Section *(optional)* | Text for heading
 Method | What happens when you click the button? Valid options: `cmd` \| `powershell_file` \| `powershell_inline` \| `pwsh_file` \| `pwsh_inline`
 Command | Path to target script/executable (`cmd` or `_file` methods) ***or*** PowerShell commands (`_inline` methods)
@@ -54,8 +68,7 @@ Arguments *(optional)* | Arguments to pass to target executable (`cmd` method) *
 Name | Text for button
 Description *(optional)* | Text for description 
 
-
-### Selected examples
+### Some examples
 
 Section | Method | Command | Arguments | Name | Description
 :---|:---|:---|:---|:---|:---
@@ -66,13 +79,13 @@ Less old | `powershell_inline` | `$PSVersionTable` | `-NoExit -WindowStyle Maxim
 The future | `pwsh_file` | `example_target.ps1` | | Example 7: pwsh_file | .ps1 file called with pwsh.exe
 The future | `pwsh_inline` | `& .\example_target.ps1 -Message "passed in via param"` | |Example 9: pwsh_inline | .ps1 file called with parameter
 
-See [`example_data.csv`](examples/example_data.csv) for further examples.
+See [`example_data.csv`](PSScriptMenuGui/examples/example_data.csv) for further examples in CSV format.
 
 ### Tips
 
 - Relative paths, network paths and paths in your environment should work.
 - `<LineBreak />` is supported in text fields.
-- You can add multiple `_inline` commands by separating with a semi-colon (`;`).
+- You can add multiple `_inline` commands by separating with a semi-colon (`;`)
 - Excel makes a good editor!
 - But watch out for Excel turning e.g. `-NoExit` into a formula. Best workaround is to prefix with a space.
 
