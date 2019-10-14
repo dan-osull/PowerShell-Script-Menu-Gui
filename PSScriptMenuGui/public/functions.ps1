@@ -9,8 +9,7 @@ Function Show-ScriptMenuGui {
         [switch]$hideConsole,
         [switch]$noExit
     )
-
-    # Record -Verbose value, to pass to select cmdlets
+    # -Verbose value, to pass to select cmdlets
     $verbose = $false
     try {
         if ($PSBoundParameters['Verbose'].ToString() -eq 'True') {
@@ -19,12 +18,7 @@ Function Show-ScriptMenuGui {
     }
     catch {}
 
-    if ($hideConsole) {
-        # TODO: This will also hide errors. Should be done later?
-        Hide-Console | Out-Null
-    }
-
-    $csvData = Import-CSV $csvPath
+    $csvData = Import-CSV -Path $csvPath -ErrorAction Stop
     Write-Verbose "Got $($csvData.Count) CSV rows"
 
     # Add unique Reference to each item
@@ -41,18 +35,19 @@ Function Show-ScriptMenuGui {
     if ($iconPath) {
         # TODO: change taskbar icon?
         $iconPath = (Resolve-Path $iconPath).Path
+        # WPF wants the absolute path
         $xaml = $xaml.Replace('INSERT_ICON_PATH',$iconPath)
     }
     else {
+        # No icon specified
         $xaml = $xaml.Replace('Icon="INSERT_ICON_PATH" ','')
     }
 
+    # Add CSV data to XAML
     # Row counter
     $script:row = 0
-    # Add CSV data to XAML
     # Not using Group-Object as PS7-preview4 does not preserve original order
     $sections = $csvData.Section | Where-Object {-not [string]::IsNullOrEmpty($_) } | Get-Unique
-
     # Generate GUI rows
     ForEach ($section in $sections) {
         Write-Verbose "Adding GUI Section: $section..."
@@ -83,6 +78,13 @@ Function Show-ScriptMenuGui {
             # Use object in pipeline to identify script to run
             Invoke-ButtonAction $_.Source.Name
         } )
+    }
+
+    if ($hideConsole) {
+        if ($global:error[0].Exception.CommandInvocation.MyCommand.ModuleName -ne 'PSScriptMenuGui') {
+            # Do not hide console if there have been errors
+            Hide-Console | Out-Null
+        }
     }
 
     Write-Verbose 'Showing dialog...'
