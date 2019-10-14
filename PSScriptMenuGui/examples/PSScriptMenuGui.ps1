@@ -6,8 +6,8 @@ try {
 }
 catch {
     Write-Warning $_
-    Write-Verbose "Attempting to import from parent directory..." -Verbose
-    Import-Module ..\
+    Write-Verbose 'Attempting to import from parent directory...' -Verbose
+    Import-Module '..\'
 }
 #endregion
 

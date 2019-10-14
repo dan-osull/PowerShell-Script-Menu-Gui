@@ -23,5 +23,5 @@ ForEach ($script in $scripts) {
     }
 }
 
-# Used to load files from xaml subfolder
+# Used to get files from xaml and examples subfolders
 $moduleRoot = $PSScriptRoot

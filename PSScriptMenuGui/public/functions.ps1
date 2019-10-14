@@ -36,8 +36,8 @@ Function Show-ScriptMenuGui {
     $xaml = $xaml.Replace('INSERT_WINDOW_TITLE',$windowTitle)
     if ($iconPath) {
         # TODO: change taskbar icon?
-        $iconPath = (Resolve-Path $iconPath).Path
         # WPF wants the absolute path
+        $iconPath = (Resolve-Path $iconPath).Path
         $xaml = $xaml.Replace('INSERT_ICON_PATH',$iconPath)
     }
     else {
