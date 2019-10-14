@@ -16,14 +16,14 @@ This an early version. What do you think? What's missing?
 
 Feedback very welcome.
 
-[@dan_osull.com](https://twitter.com/dan_osull_com/)  
+[@dan_osull.com](https://twitter.com/dan_osull_com/) *(please follow!)*  
 https://blog.osull.com  
 powershell@osull.com
 
 ## Compatibility
 
-- Tested with **PowerShell 5.1 x64** and **PowerShell 7-preview 4 x64** on Windows 10.
-- This module does not currently work with PowerShell 7-preview in the VS Code integrated console.
+- Tested with **PowerShell 5.1 x64** and **PowerShell 7 Preview 4 x64** on Windows 10.
+- This module does not currently work with PowerShell 7 Preview in the VS Code integrated console.
 
 ## Try it out
 
@@ -41,7 +41,7 @@ When the module is a bit more mature I'll put it in the PowerShell Gallery so it
 
     Show-ScriptMenuGui -csvPath '.\example_data.csv' -Verbose
 
-## `Show-ScriptMenuGui` options
+## Show-ScriptMenuGui options
 
 Parameter | What is it?
 :--- |:---
@@ -57,7 +57,9 @@ See [`PSScriptMenuGui_all_options.ps1`](PSScriptMenuGui/examples/PSScriptMenuGui
 
 ## CSV reference
 
-This table details how you need to lay out the CSV file for your menu:
+This table details how you need to lay out the CSV file for your menu.
+
+The top row of your CSV should contain the column headers. Each row after this defines a menu item.
 
 Column header | What is it?
 :--- |:---
@@ -75,7 +77,7 @@ Section | Method | Command | Arguments | Name | Description
 Old school | `cmd` | `taskmgr.exe` | | Example 2: cmd | External executable
 Old school | `cmd` | `notepad.exe` | `hello` | Example 3: cmd | External executable with arguments
 Less old | `powershell_file` | `example_target.ps1` | | Example 4: powershell_file | .ps1 file called with powershell.exe
-Less old | `powershell_inline` | `$PSVersionTable` | `-NoExit -WindowStyle Maximized` | Example 6: powershell_file | Additional powershell.exe arguments
+Less old | `powershell_inline` | `$PSVersionTable` | `-NoExit -WindowStyle Maximized` | Example 6: powershell_inline | Additional powershell.exe arguments
 The future | `pwsh_file` | `example_target.ps1` | | Example 7: pwsh_file | .ps1 file called with pwsh.exe
 The future | `pwsh_inline` | `& .\example_target.ps1 -Message "passed in via param"` | |Example 9: pwsh_inline | .ps1 file called with parameter
 
