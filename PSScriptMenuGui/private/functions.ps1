@@ -1,4 +1,5 @@
 function Hide-Console {
+    Write-Verbose 'Hiding PowerShell console...'
     # .NET method for hiding the PowerShell console window
     # https://stackoverflow.com/questions/40617800/opening-powershell-script-and-hide-command-prompt-but-not-the-gui
     Add-Type -Name Window -Namespace Console -MemberDefinition '

@@ -9,6 +9,8 @@ Function Show-ScriptMenuGui {
         [switch]$hideConsole,
         [switch]$noExit
     )
+    Write-Verbose 'Show-ScriptMenuGui started'
+
     # -Verbose value, to pass to select cmdlets
     $verbose = $false
     try {
