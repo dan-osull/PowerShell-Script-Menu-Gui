@@ -1,6 +1,15 @@
+#region Setup
 Set-Location $PSScriptRoot
 Remove-Module PSScriptMenuGui -ErrorAction SilentlyContinue
-Import-Module ..\PSScriptMenuGui
+try {
+    Import-Module PSScriptMenuGui -ErrorAction Stop
+}
+catch {
+    Write-Error $_
+    Import-Module ..\
+}
+#endregion
+
 $params = @{
     csvPath = '.\example_data.csv'
     windowTitle = 'Example with all options'
