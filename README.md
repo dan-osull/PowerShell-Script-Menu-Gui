@@ -41,7 +41,7 @@ When the module is a bit more mature I'll put it in the PowerShell Gallery so it
 
     Show-ScriptMenuGui -csvPath '.\example_data.csv' -Verbose
 
-## `Show-ScriptMenuGui` options
+## Show-ScriptMenuGui options
 
 Parameter | What is it?
 :--- |:---
@@ -75,7 +75,7 @@ Section | Method | Command | Arguments | Name | Description
 Old school | `cmd` | `taskmgr.exe` | | Example 2: cmd | External executable
 Old school | `cmd` | `notepad.exe` | `hello` | Example 3: cmd | External executable with arguments
 Less old | `powershell_file` | `example_target.ps1` | | Example 4: powershell_file | .ps1 file called with powershell.exe
-Less old | `powershell_inline` | `$PSVersionTable` | `-NoExit -WindowStyle Maximized` | Example 6: powershell_file | Additional powershell.exe arguments
+Less old | `powershell_inline` | `$PSVersionTable` | `-NoExit -WindowStyle Maximized` | Example 6: powershell_inline | Additional powershell.exe arguments
 The future | `pwsh_file` | `example_target.ps1` | | Example 7: pwsh_file | .ps1 file called with pwsh.exe
 The future | `pwsh_inline` | `& .\example_target.ps1 -Message "passed in via param"` | |Example 9: pwsh_inline | .ps1 file called with parameter
 
