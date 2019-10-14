@@ -16,14 +16,14 @@ This an early version. What do you think? What's missing?
 
 Feedback very welcome.
 
-[@dan_osull.com](https://twitter.com/dan_osull_com/)  
+[@dan_osull.com](https://twitter.com/dan_osull_com/) *(please follow!)*  
 https://blog.osull.com  
 powershell@osull.com
 
 ## Compatibility
 
-- Tested with **PowerShell 5.1 x64** and **PowerShell 7-preview 4 x64** on Windows 10.
-- This module does not currently work with PowerShell 7-preview in the VS Code integrated console.
+- Tested with **PowerShell 5.1 x64** and **PowerShell 7 Preview 4 x64** on Windows 10.
+- This module does not currently work with PowerShell 7 Preview in the VS Code integrated console.
 
 ## Try it out
 
