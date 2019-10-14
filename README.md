@@ -44,14 +44,14 @@ When the module is a bit more mature I'll put it in the PowerShell Gallery so it
 ## `Show-ScriptMenuGui` options
 
 Parameter | What is it?
-:--- |:---|:---|:---
-`-csvPath` | Path to CSV file that defines the menu. See [CSV reference](#CSV-reference), below.
+:--- |:---
+`-csvPath` | Path to CSV file that defines the menu. See [CSV reference](#csv-reference), below.
 `-windowTitle` *(optional)* | Custom title for the menu window
-`-buttonForegroundColor` *(optional)* | Custom button foreground (text) color. Hex codes (e.g. `#C00077`) and color names (e.g. `Azure`) are valid. See [.Net Color Class](https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors)
+`-buttonForegroundColor` *(optional)* | Custom button foreground (text) color. Hex codes (e.g. `#C00077`) and color names (e.g. `Azure`) are valid. See [.NET Color Class](https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors).
 `-buttonBackgroundColor` *(optional)* | Custom button background color
 `-iconPath` *(optional)* | Path to .ico file for use in menu
 `-hideConsole` *(optional)* | Hide the PowerShell console that the menu is called from. **Note:** This means you won't be able to see any errors from button clicks. If things aren't working, this should be the first thing you disable.
-`-noExit` *(optional)* | Start all PowerShell instances with `-NoExit` *("Does not exit after running startup commands.")*. **Note:** You can set `-NoExit` on individual menu items by using the Arguments column. See [CSV reference](#CSV-reference), below.
+`-noExit` *(optional)* | Start all PowerShell instances with `-NoExit` *("Does not exit after running startup commands.")*. **Note:** You can set `-NoExit` on individual menu items by using the *Arguments* column. See [CSV reference](#csv-reference), below.
 
 See [`PSScriptMenuGui_all_options.ps1`](PSScriptMenuGui/examples/PSScriptMenuGui_all_options.ps1) for an example using every option.
 
