@@ -90,3 +90,19 @@ Function Show-ScriptMenuGui {
     Write-Verbose 'Showing dialog...'
     $Form.ShowDialog() | Out-Null
 }
+
+Function New-ScriptMenuGuiExample {
+    [CmdletBinding()]
+    param (
+        $path = '.'
+    )
+
+    # Ensure folder exists
+    if (-not (Test-Path -Path $path -PathType Container) ) {
+        Write-Verbose "Creating directory $path..."
+        New-Item -Path $path -ItemType 'directory' | Out-Null
+    }
+
+    Write-Verbose "Copying examples to $path..."
+    Copy-Item -Path "$moduleRoot\examples\*" -Destination $path
+}
