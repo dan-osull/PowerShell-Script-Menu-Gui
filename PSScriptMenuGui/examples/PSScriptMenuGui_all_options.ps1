@@ -5,7 +5,8 @@ try {
     Import-Module PSScriptMenuGui -ErrorAction Stop
 }
 catch {
-    Write-Error $_
+    Write-Warning $_
+    Write-Verbose "Attempting to import from parent directory..." -Verbose
     Import-Module ..\
 }
 #endregion
