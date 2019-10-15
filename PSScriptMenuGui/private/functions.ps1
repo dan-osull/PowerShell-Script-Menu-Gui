@@ -139,6 +139,9 @@ Function Start-Script {
             $process = New-Object System.Diagnostics.Process
             $process.StartInfo.FileName = $command
             $process.StartInfo.Arguments = $arguments
+            # Set process working directory to PowerShell working directory
+            # Mimics behaviour of exe called from cmd prompt
+            $process.StartInfo.WorkingDirectory = $PWD
             $process.Start()
         }
         else {

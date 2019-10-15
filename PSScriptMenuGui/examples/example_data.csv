@@ -1,7 +1,7 @@
 Section,Method,Command,Arguments,Name,Description
 Old school,cmd,.\example_target.cmd,,Example 1:<LineBreak />cmd,.cmd file
 Old school,cmd,taskmgr.exe,,Example 2:<LineBreak />cmd,External executable
-Old school,cmd,notepad.exe,hello,Example 3:<LineBreak />cmd,External executable with arguments
+Old school,cmd,notepad.exe,example_text_file,Example 3:<LineBreak />cmd,External executable with arguments
 Less old,powershell_file,.\example_target.ps1,,Example 4:<LineBreak />powershell_file,.ps1 file called with powershell.exe
 Less old,powershell_inline,"""Inline script"";$PSVersionTable;Read-Host ""Press Enter to continue""",,Example 5:<LineBreak />powershell_inline,Inline script called with powershell.exe
 Less old,powershell_inline,$PSVersionTable, -NoExit -WindowStyle Maximized,Example 6:<LineBreak />powershell_inline,Additional powershell.exe arguments
