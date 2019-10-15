@@ -28,7 +28,7 @@ Just a few minutes to setup and - *click! click!* - you're away!
 ### Clone from GitHub
 
     git clone https://github.com/weebsnore/PowerShell-Script-Menu-Gui
-    cd PowerShell-Script-Menu-Gui/PSScriptMenuGui/examples
+    cd PowerShell-Script-Menu-Gui\PSScriptMenuGui\examples
     .\PSScriptMenuGui.ps1
 
 ## Problems and feedback
