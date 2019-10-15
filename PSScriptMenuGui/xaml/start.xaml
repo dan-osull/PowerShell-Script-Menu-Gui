@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="INSERT_WINDOW_TITLE" Icon="INSERT_ICON_PATH" SizeToContent="WidthAndHeight" MaxHeight="800" MinHeight="200" MinWidth="400" MaxWidth="600" WindowStartupLocation="CenterScreen">
+        Title="INSERT_WINDOW_TITLE" Icon="INSERT_ICON_PATH" SizeToContent="WidthAndHeight" MaxHeight="800" MinHeight="200" MaxWidth="600" WindowStartupLocation="CenterScreen">
     <ScrollViewer Padding="10,0,10,10">
         <Grid>
             <Grid.ColumnDefinitions>
