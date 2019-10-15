@@ -57,11 +57,8 @@ Function Get-XamlSafeString {
     # https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/how-to-use-special-characters-in-xaml
     # Order matters: &amp first
     $string = $string.Replace('&','&amp;').Replace('<','&lt;').Replace('>','&gt;').Replace('"','&quot;')
-    # Preserves line breaks. A bit hacky.
-    # https://stackoverflow.com/questions/183406/newline-in-string-attribute
-    $string = $string.Replace('&lt;LineBreak /&gt;','<LineBreak />')
-    # TODO: <Paragraph> support?
-    # TODO: support for e.g. <linebreak/>
+    # Restore line breaks
+    $string = $string -replace '&lt;\s*?LineBreak\s*?\/\s*?&gt;','<LineBreak />'
 
     return $string
 }
@@ -160,6 +157,7 @@ Function Start-Script {
     }
     if ($arguments) {
         # Additional PS arguments from CSV
+        # PowerShell doesn't seem to care if it gets the same argument twice
         $psArguments += $arguments
     }
 
