@@ -12,9 +12,30 @@ You can also add Windows programs and files to the menu.
 
 Just a few minutes to setup and - *click! click!* - you're away!
 
-This an early version. What do you think? What's missing?
+![](demo.gif)
 
-Feedback very welcome.
+## Try it out
+
+### Install from the PowerShell Gallery
+
+    Install-Module PSScriptMenuGui
+    New-ScriptMenuGuiExample
+    cd PSScriptMenuGui_example
+    .\PSScriptMenuGui.ps1
+
+### Clone from GitHub
+
+    git clone https://github.com/weebsnore/PowerShell-Script-Menu-Gui
+    cd PowerShell-Script-Menu-Gui/PSScriptMenuGui/examples
+    .\PSScriptMenuGui.ps1
+
+## Problems and feedback
+
+How are you finding the module? Is it useful? *(Please share a screenshot!)*
+
+Are you stuck? Do you want a feature?
+
+Please [open a GitHub issue](https://github.com/weebsnore/PowerShell-Script-Menu-Gui/issues) or get in touch.
 
 [@dan_osull.com](https://twitter.com/dan_osull_com/) *- follow me for updates!*  
 https://blog.osull.com  
@@ -24,26 +45,6 @@ powershell@osull.com
 
 - Tested with **PowerShell 5.1 x64** and **PowerShell 7 Preview 4 x64** on Windows 10.
 - This module does not currently work with PowerShell 7 Preview in the VS Code integrated console.
-
-## Try it out
-
-<!--COMING SOON
-    Install-Module PSScriptMenuGui
-    New-ScriptMenuGuiExample
-    cd PSScriptMenuGui_example
-    .\PSScriptMenuGui.ps1
-
--->
-
-    git clone https://github.com/weebsnore/PowerShell-Script-Menu-Gui
-    cd PowerShell-Script-Menu-Gui/PSScriptMenuGui/examples
-    .\PSScriptMenuGui.ps1
-
-Or - if you don't have Git - [download the project ZIP](https://github.com/weebsnore/PowerShell-Script-Menu-Gui/archive/master.zip), unzip somewhere convenient, and experiment with editing [`PSScriptMenuGui\examples\example_data.csv`](PSScriptMenuGui/examples/example_data.csv) and running [`PSScriptMenuGui\examples\PSScriptMenuGui.ps1`](PSScriptMenuGui/examples/PSScriptMenuGui.ps1)
-
-When the module is a bit more mature I'll put it in the PowerShell Gallery so it can be installed with `Install-Module`
-
-![](demo.gif)
 
 ## Basic usage
 
@@ -100,7 +101,3 @@ See [`example_data.csv`](PSScriptMenuGui/examples/example_data.csv) for further 
 - But watch out for Excel turning e.g. `-NoExit` into a formula. Best workaround is to prefix with a space.
 
 ![](excel.png)
-
-## Known issues
-
-- Various minor issues - see `TODO:` comments in code.
