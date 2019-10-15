@@ -1,4 +1,54 @@
 Function Show-ScriptMenuGui {
+    <#
+    .SYNOPSIS
+        Use a CSV file to make a graphical menu of PowerShell scripts. Easy to customise and fast to launch.
+    .DESCRIPTION
+        Do you have favourite scripts that go forgotten?
+
+        Does your organisation have scripts that would be useful to frontline staff who are not comfortable with the command line?
+
+        This module uses a CSV file to make a graphical menu of PowerShell scripts.
+
+        It's easy to customise and it launches fast.
+
+        You can also add Windows programs and files to the menu.
+    .PARAMETER csvPath
+        Path to CSV file that defines the menu.
+
+        See CSV reference: https://github.com/weebsnore/PowerShell-Script-Menu-Gui
+    .PARAMETER windowTitle
+        Custom title for the menu window
+    .PARAMETER buttonForegroundColor
+        Custom button foreground (text) color.
+
+        Hex codes (e.g. #C00077) and color names (e.g. Azure) are valid.
+
+        See .NET Color Class: https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors
+    .PARAMETER buttonBackgroundColor
+        Custom button background color.
+
+        Hex codes (e.g. #C00077) and color names (e.g. Azure) are valid.
+
+        See .NET Color Class: https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors
+    .PARAMETER iconPath
+        Path to .ico file for use in menu
+    .PARAMETER hideConsole
+        Hide the PowerShell console that the menu is called from.
+
+        Note: This means you won't be able to see any errors from button clicks. If things aren't working, this should be the first thing you stop using.
+    .PARAMETER noExit
+        Start all PowerShell instances with -NoExit` ("Does not exit after running startup commands.")
+
+        Note: You can set -NoExit on individual menu items by using the Arguments column.
+
+        See CSV reference: https://github.com/weebsnore/PowerShell-Script-Menu-Gui
+    .EXAMPLE
+        Show-ScriptMenuGui -csvPath '.\example_data.csv' -Verbose
+    .NOTES
+        Run New-ScriptMenuGuiExample to get some example files to help you get going
+    .LINK
+        https://github.com/weebsnore/PowerShell-Script-Menu-Gui
+    #>
     [CmdletBinding()]
     param(
         [string][Parameter(Mandatory)]$csvPath,
@@ -94,17 +144,26 @@ Function Show-ScriptMenuGui {
 }
 
 Function New-ScriptMenuGuiExample {
+    <#
+    .SYNOPSIS
+        Creates an example set of files for PSScriptMenuGui
+    .PARAMETER path
+        Path of output folder
+    .EXAMPLE
+        New-ScriptMenuGuiExample -path 'PSScriptMenuGui_example'
+    .LINK
+        https://github.com/weebsnore/PowerShell-Script-Menu-Gui
+    #>
     [CmdletBinding()]
     param (
-        $path = '.'
+        [string]$path = 'PSScriptMenuGui_example'
     )
 
     # Ensure folder exists
     if (-not (Test-Path -Path $path -PathType Container) ) {
-        Write-Verbose "Creating directory $path..."
-        New-Item -Path $path -ItemType 'directory' | Out-Null
+        New-Item -Path $path -ItemType 'directory' -Verbose | Out-Null
     }
 
-    Write-Verbose "Copying examples to $path..."
+    Write-Verbose "Copying example files to $path..." -Verbose
     Copy-Item -Path "$moduleRoot\examples\*" -Destination $path
 }

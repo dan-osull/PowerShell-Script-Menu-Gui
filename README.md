@@ -16,7 +16,7 @@ This an early version. What do you think? What's missing?
 
 Feedback very welcome.
 
-[@dan_osull.com](https://twitter.com/dan_osull_com/) *(please follow!)*  
+[@dan_osull.com](https://twitter.com/dan_osull_com/) *- follow me for updates!*  
 https://blog.osull.com  
 powershell@osull.com
 
@@ -26,6 +26,14 @@ powershell@osull.com
 - This module does not currently work with PowerShell 7 Preview in the VS Code integrated console.
 
 ## Try it out
+
+<!--COMING SOON
+    Install-Module PSScriptMenuGui
+    New-ScriptMenuGuiExample
+    cd PSScriptMenuGui_example
+    .\PSScriptMenuGui.ps1
+
+-->
 
     git clone https://github.com/weebsnore/PowerShell-Script-Menu-Gui
     cd PowerShell-Script-Menu-Gui/PSScriptMenuGui/examples
@@ -50,7 +58,7 @@ Parameter | What is it?
 `-buttonForegroundColor` *(optional)* | Custom button foreground (text) color. Hex codes (e.g. `#C00077`) and color names (e.g. `Azure`) are valid. See [.NET Color Class](https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors).
 `-buttonBackgroundColor` *(optional)* | Custom button background color
 `-iconPath` *(optional)* | Path to .ico file for use in menu
-`-hideConsole` *(optional)* | Hide the PowerShell console that the menu is called from. **Note:** This means you won't be able to see any errors from button clicks. If things aren't working, this should be the first thing you disable.
+`-hideConsole` *(optional)* | Hide the PowerShell console that the menu is called from. **Note:** This means you won't be able to see any errors from button clicks. If things aren't working, this should be the first thing you stop using.
 `-noExit` *(optional)* | Start all PowerShell instances with `-NoExit` *("Does not exit after running startup commands.")*. **Note:** You can set `-NoExit` on individual menu items by using the *Arguments* column. See [CSV reference](#csv-reference), below.
 
 See [`PSScriptMenuGui_all_options.ps1`](PSScriptMenuGui/examples/PSScriptMenuGui_all_options.ps1) for an example using every option.
