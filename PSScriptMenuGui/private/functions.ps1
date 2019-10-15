@@ -38,7 +38,6 @@ Function New-GuiRow {
     $string = $string.Replace('INSERT_BUTTON_TEXT',(Get-XamlSafeString $item.Name) )
     # Description is optional
     if ($item.Description) {
-        # TODO: Window MinWidth is too high if no items have Description
         $string = $string.Replace('INSERT_DESCRIPTION',(Get-XamlSafeString $item.Description) )
     }
     else {
@@ -58,10 +57,11 @@ Function Get-XamlSafeString {
     # https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/how-to-use-special-characters-in-xaml
     # Order matters: &amp first
     $string = $string.Replace('&','&amp;').Replace('<','&lt;').Replace('>','&gt;').Replace('"','&quot;')
-    # Preserves line breaks. A bit hacky. Bad idea?
+    # Preserves line breaks. A bit hacky.
     # https://stackoverflow.com/questions/183406/newline-in-string-attribute
-    # TODO: <Paragraph> support?
     $string = $string.Replace('&lt;LineBreak /&gt;','<LineBreak />')
+    # TODO: <Paragraph> support?
+    # TODO: support for e.g. <linebreak/>
 
     return $string
 }
