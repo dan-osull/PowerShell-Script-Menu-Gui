@@ -26,12 +26,8 @@ Function Show-ScriptMenuGui {
         See .NET Color Class: https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors
     .PARAMETER buttonBackgroundColor
         Custom button background color.
-
-        Hex codes (e.g. #C00077) and color names (e.g. Azure) are valid.
-
-        See .NET Color Class: https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors
     .PARAMETER iconPath
-        Path to .ico file for use in menu
+        Path to .ico file for use in menu.
     .PARAMETER hideConsole
         Hide the PowerShell console that the menu is called from.
 
@@ -45,7 +41,7 @@ Function Show-ScriptMenuGui {
     .EXAMPLE
         Show-ScriptMenuGui -csvPath '.\example_data.csv' -Verbose
     .NOTES
-        Run New-ScriptMenuGuiExample to get some example files to help you get going
+        Run New-ScriptMenuGuiExample to get some example files
     .LINK
         https://github.com/weebsnore/PowerShell-Script-Menu-Gui
     #>
