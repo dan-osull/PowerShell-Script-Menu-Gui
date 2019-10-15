@@ -1,5 +1,7 @@
 # PSScriptMenuGui
 
+[![PSGallery Version](https://img.shields.io/powershellgallery/v/PSScriptMenuGui.png?style=for-the-badge&logo=powershell&label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/PSScriptMenuGui/) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/PSScriptMenuGui.png?style=for-the-badge&label=Downloads)](https://www.powershellgallery.com/packages/PSScriptMenuGui/)
+
 Do you have favourite scripts that go forgotten?
 
 Does your organisation have scripts that would be useful to frontline staff who are not comfortable with the command line?
