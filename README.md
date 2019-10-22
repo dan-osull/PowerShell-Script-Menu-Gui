@@ -68,7 +68,7 @@ See [`PSScriptMenuGui_all_options.ps1`](PSScriptMenuGui/examples/PSScriptMenuGui
 
 ## CSV reference
 
-This table details how you need to lay out the CSV file for your menu.
+This table details how to lay out the CSV file for your menu.
 
 The top row of your CSV should contain the column headers. Each row after this defines a menu item.
 
