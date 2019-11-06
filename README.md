@@ -18,6 +18,10 @@ Just a few minutes to setup and - *click! click!* - you're away!
 
 ## Try it out
 
+### Tutorial
+
+Looking for a step-by-step introduction? [**See this blog post.**](https://blog.osull.com/2019/11/06/tutorial-use-a-csv-file-to-make-a-graphical-menu-of-powershell-scripts/)
+
 ### Install from the PowerShell Gallery
 
     Install-Module PSScriptMenuGui
