@@ -9,15 +9,13 @@ Function Show-ScriptMenuGui {
 
         This module uses a CSV file to make a graphical menu of PowerShell scripts.
 
-        It's easy to customise and it launches fast.
-
         You can also add Windows programs and files to the menu.
     .PARAMETER csvPath
         Path to CSV file that defines the menu.
 
         See CSV reference: https://github.com/weebsnore/PowerShell-Script-Menu-Gui
     .PARAMETER windowTitle
-        Custom title for the menu window
+        Custom title for the menu window.
     .PARAMETER buttonForegroundColor
         Custom button foreground (text) color.
 
@@ -33,7 +31,7 @@ Function Show-ScriptMenuGui {
 
         Note: This means you won't be able to see any errors from button clicks. If things aren't working, this should be the first thing you stop using.
     .PARAMETER noExit
-        Start all PowerShell instances with -NoExit` ("Does not exit after running startup commands.")
+        Start all PowerShell instances with -NoExit ("Does not exit after running startup commands.")
 
         Note: You can set -NoExit on individual menu items by using the Arguments column.
 

@@ -12,7 +12,7 @@
 RootModule = 'PSScriptMenuGui.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.2.0'
+ModuleVersion = '1.0.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -30,7 +30,17 @@ Author = "Dan O'Sullivan"
 Copyright = "(c) Dan O'Sullivan. Released under the MIT License."
 
 # Description of the functionality provided by this module
-Description = 'Use a CSV file to make a graphical menu of PowerShell scripts. Easy to customise and fast to launch.'
+Description = 'Use a CSV file to make a graphical menu of PowerShell scripts. Easy to customise and fast to launch.
+
+Do you have favourite scripts that go forgotten?
+
+Does your organisation have scripts that would be useful to frontline staff who are not comfortable with the command line?
+
+This module uses a CSV file to make a graphical menu of PowerShell scripts.
+
+You can also add Windows programs and files to the menu.
+
+See the Project Site on GitHub for full documentation.'
 
 # Minimum version of the PowerShell engine required by this module
 PowerShellVersion = '5.1'
