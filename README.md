@@ -49,8 +49,8 @@ powershell@osull.com
 
 ## Compatibility
 
-- Tested with **PowerShell 5.1 x64** and **PowerShell 7 Preview 4 x64** on Windows 10.
-- This module does not currently work with PowerShell 7 Preview in the VS Code integrated console.
+- Tested with **PowerShell 5.1 x64** and **PowerShell 7 Preview 5 x64** on Windows 10.
+- Works in VS Code with PowerShell 7 only when using the PowerShell Preview extension.
 
 ## Basic usage
 
