@@ -24,7 +24,7 @@ Looking for a step-by-step introduction? [**See this blog post.**](https://blog.
 
 ### Install from the PowerShell Gallery
 
-    Install-Module PSScriptMenuGui
+    Install-Module PSScriptMenuGui -Scope CurrentUser
     New-ScriptMenuGuiExample
     cd PSScriptMenuGui_example
     .\PSScriptMenuGui.ps1
