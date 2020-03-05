@@ -49,8 +49,7 @@ powershell@osull.com
 
 ## Compatibility
 
-- Tested with **PowerShell 5.1 x64** and **PowerShell 7 x64** on Windows 10.
-- Works in VS Code with PowerShell 7 only when using the PowerShell Preview extension.
+Tested with **PowerShell 5.1 x64** and **PowerShell 7 x64** on Windows 10.
 
 ## Basic usage
 
